@@ -1,0 +1,88 @@
+swagger: "2.0"
+info:
+  description: "Essa é a documentação é do controle de usuário para uso do grupo da faculdade"
+  version: "1.0.0"
+  title: "Controle de usuário do Remember"
+host: "35.199.74.137:3000"
+tags:
+- name: "login"
+- name: "signup"
+schemes:
+- "http"
+paths:
+    /login:
+      post:
+        tags:
+        - "login"
+        summary: "Loga o usuário"
+        description: "Loga o usuário"
+        consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Informação para Logar"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginData"
+        responses:
+          200:
+            description: "Login Feito com Sucesso"
+            schema:
+              $ref: "#/definitions/BaseResponse"
+    /signup:
+      post:
+        tags:
+        - "signup"
+        summary: "Cadastro de usuário"
+        description: "Cadastro de usuário"
+        consumes:
+        - "application/json"
+        produces:
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Informação para cadastro"
+          required: true
+          schema:
+            $ref: "#/definitions/SignupData"
+        responses:
+          200:
+            description: "Cadastro feito com sucesso"
+            schema:
+              $ref: "#/definitions/BaseResponse"
+definitions:
+  BaseResponse:
+    type: object
+    properties:
+      success:
+        description: "Data da Medição"
+        type: boolean
+      content:
+        description: "Data da Medição"
+        type: object
+      message:
+        description: "Data da Medição"
+        type: string
+  LoginData:
+    type: object
+    properties:
+      username:
+        description: " Nome do usuário"
+        type: string
+      password:
+        description: "Senha do usuário"
+        type: string
+  SignupData:
+    type: object
+    properties:
+      username:
+        description: "Razão Social do cliente"
+        type: string
+      password:
+        description: "Senha do cliente"
+        type: string
+      
